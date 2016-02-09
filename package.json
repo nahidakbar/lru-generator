@@ -1,0 +1,23 @@
+{
+  "name": "lru-generator",
+  "version": "0.0.1",
+  "description": "Least recently used cached generator",
+  "main": "generator.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.inside.nicta.com.au:nakbar/lru-generator.git"
+  },
+  "keywords": [
+    "least",
+    "recently",
+    "used",
+    "cache",
+    "generator",
+    "factory"
+  ],
+  "author": "Nahid Akbar",
+  "license": "MIT"
+}
