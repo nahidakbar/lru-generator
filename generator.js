@@ -8,80 +8,56 @@
 
 "use strict";
 
+function print(t)
+{
+  while (t !== undefined)
+  {
+    console.log('item', t.key,
+                t.prev? 'prev' : '', t.prev ? t.prev.key : '',
+                t.next? 'next' : '', t.next ? t.next.key : '');
+    t = t.next;
+  }
+}
 
 function generator(limit, global_generate)
 {
+  limit = Math.max(1, limit);
   var index = {};
-  var top = null;
-  var bottom = null;
+  var top = {next: null, key: 'top'};
+  var bottom = {prev: top, key: 'bottom'};
+  top.next = bottom;
   var count = 0;
   return function(key, local_generate)
   {
-    if (top === null)
+    if (index[key] !== undefined)
     {
-      bottom = top = index[key] = {next: null, prev: null, item: (local_generate || global_generate)(key), key: key};
+      var i = index[key],
+          n = i.next,
+          p = i.prev;
+      if (i.key !== top.next.key)
+      {
+        p.next = n;
+        n.prev = p;
+        top.next.prev = i;
+        i.next = top.next;
+        top.next = i;
+      }
     }
     else
     {
-      if (index[key])
+      var n = index[key] = {next: top.next, prev: top, item: (local_generate || global_generate)(key), key: key};
+      top.next.prev = n;
+      top.next = n;
+      if (++count > limit)
       {
-        var i = index[key],
-            n = i.next,
-            p = i.prev;
-        if (i.key !== top.key)
-        {
-          if (p !== null)
-          {
-            p.next = n;
-            if (p.prev === null)
-            {
-              p.prev = i;
-            }
-          }
-          else
-          {
-            top = i;
-          }
-          if (n != null)
-          {
-            n.prev = p;
-          }
-          else
-          {
-            bottom = p;
-          }
-          top.prev = i;
-          i.prev = null;
-          i.next = top;
-          top = i;
-        }
-      }
-      else
-      {
-        var ot = top;
-        top = index[key] = {next: top, prev: null, item: (local_generate || global_generate)(key), key: key};
-        ot.prev = top;
-        if (++count > limit)
-        {
-          delete index[bottom.key];
-          bottom = bottom.prev;
-          bottom.next = null;
-          count--;
-        }
+        var i = bottom.prev;
+        i.prev.next = i.next;
+        bottom.prev = i.prev;
+        delete index[i.key];
+        count--;
       }
     }
-    /*
-    console.log('key', key);
-    var t = top;
-    console.log('top', top.key);
-    while (t != null)
-    {
-      console.log('item', t.key, 'prev', t.prev && t.prev.key, 'next', t.next && t.next.key);
-      t = t.next;
-    }
-    console.log('bottom', bottom.key);
-    */
-    return top.item;
+    return top.next.item;
   };
 }
  
