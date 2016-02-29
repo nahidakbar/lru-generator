@@ -1,6 +1,6 @@
 {
   "name": "lru-generator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Least recently used cached generator",
   "main": "generator.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.inside.nicta.com.au:nakbar/lru-generator.git"
+    "url": "git@github.com:AusFTAs/lru-generator.git"
   },
   "keywords": [
     "least",
