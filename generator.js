@@ -27,7 +27,7 @@ function generator(limit, global_generate)
   var bottom = {prev: top, key: 'bottom'};
   top.next = bottom;
   var count = 0;
-  return function(key, local_generate)
+  var result = function(key, local_generate)
   {
     if (index[key] !== undefined)
     {
@@ -59,6 +59,21 @@ function generator(limit, global_generate)
     }
     return top.next.item;
   };
+
+  result.purge = function(key)
+  {
+    var i = index[key];
+    if (i !== undefined)
+    {
+      var n = i.next,
+          p = i.prev;
+      p.next = n;
+      n.prev = p;
+      delete index[key];
+    }
+  };
+
+  return result;
 }
  
 

@@ -1,6 +1,6 @@
 {
   "name": "lru-generator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Least recently used cached generator",
   "main": "generator.js",
   "scripts": {
