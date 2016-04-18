@@ -52,7 +52,7 @@ function generator(limit, global_generate)
       {
         var i = bottom.prev;
         i.prev.next = i.next;
-        bottom.prev = i.prev;
+        i.next.prev = i.prev;
         delete index[i.key];
         count--;
       }
@@ -65,11 +65,10 @@ function generator(limit, global_generate)
     var i = index[key];
     if (i !== undefined)
     {
-      var n = i.next,
-          p = i.prev;
-      p.next = n;
-      n.prev = p;
+      i.prev.next = i.next;
+      i.next.prev = i.prev
       delete index[key];
+      count--;
     }
   };
 
