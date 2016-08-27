@@ -54,6 +54,21 @@ function generator(limit, global_generate, options)
     }
   }
   
+  function cache(key, value)
+  {
+    var n = index[key] = {next: top.next, prev: top, item: value, key: key};
+    top.next.prev = n;
+    top.next = n;
+    if (++count > limit)
+    {
+      var i = bottom.prev;
+      i.prev.next = i.next;
+      i.next.prev = i.prev;
+      delete index[i.key];
+      count--;
+    }
+  }
+  
   function purge(key)
   {
     var i = index[key];
@@ -74,19 +89,10 @@ function generator(limit, global_generate, options)
     }
     else
     {
-      var n = index[key] = {next: top.next, prev: top, item: (local_generate || global_generate)(key), key: key};
-      top.next.prev = n;
-      top.next = n;
-      if (++count > limit)
-      {
-        var i = bottom.prev;
-        i.prev.next = i.next;
-        i.next.prev = i.prev;
-        delete index[i.key];
-        count--;
-      }
+      var value = (local_generate || global_generate)(key);
+      cache(key, value);
+      return value;
     }
-    return top.next.item;
   }
   
   function async_generate(key, callback, local_generate)
@@ -99,17 +105,7 @@ function generator(limit, global_generate, options)
     {
       (local_generate || global_generate)(key, value =>
       {
-        var n = index[key] = {next: top.next, prev: top, item: value, key: key};
-        top.next.prev = n;
-        top.next = n;
-        if (++count > limit)
-        {
-          var i = bottom.prev;
-          i.prev.next = i.next;
-          i.next.prev = i.prev;
-          delete index[i.key];
-          count--;
-        }
+        cache(key, value);
         callback(value);
       });
     }
@@ -118,6 +114,7 @@ function generator(limit, global_generate, options)
   var result = options.async? async_generate : sync_generate;
   result.sync = sync_generate;
   result.async = async_generate;
+  result.cache = cache;
   result.purge = purge;
   result.isCached = isCached;
   result.getCached = getCached;
