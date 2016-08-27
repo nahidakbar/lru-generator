@@ -19,21 +19,29 @@ function print(t)
   }
 }
 
-function generator(limit, global_generate)
+function generator(limit, global_generate, options)
 {
+  options = options || {};
+  
   limit = Math.max(1, limit);
   var index = {};
   var top = {next: null, key: 'top'};
   var bottom = {prev: top, key: 'bottom'};
   top.next = bottom;
   var count = 0;
-  var result = function(key, local_generate)
+  
+  function isCached(key)
   {
-    if (index[key] !== undefined)
+    return index[key] !== undefined;
+  }
+  
+  function getCached(key)
+  {
+    var i = index[key],
+        n = i.next,
+        p = i.prev;
+    if (i !== undefined)
     {
-      var i = index[key],
-          n = i.next,
-          p = i.prev;
       if (i.key !== top.next.key)
       {
         p.next = n;
@@ -42,6 +50,27 @@ function generator(limit, global_generate)
         i.next = top.next;
         top.next = i;
       }
+      return top.next.item;
+    }
+  }
+  
+  function purge(key)
+  {
+    var i = index[key];
+    if (i !== undefined)
+    {
+      i.prev.next = i.next;
+      i.next.prev = i.prev
+      delete index[key];
+      count--;
+    }
+  };
+  
+  function sync_generate(key, local_generate)
+  {
+    if (index[key] !== undefined)
+    {
+      return getCached(key);
     }
     else
     {
@@ -58,22 +87,41 @@ function generator(limit, global_generate)
       }
     }
     return top.next.item;
-  };
-
-  result.purge = function(key)
+  }
+  
+  function async_generate(key, callback, local_generate)
   {
-    var i = index[key];
-    if (i !== undefined)
+    if (index[key] !== undefined)
     {
-      i.prev.next = i.next;
-      i.next.prev = i.prev
-      delete index[key];
-      count--;
+      callback(getCached(key));
     }
-  };
-
+    else
+    {
+      (local_generate || global_generate)(key, value =>
+      {
+        var n = index[key] = {next: top.next, prev: top, item: value, key: key};
+        top.next.prev = n;
+        top.next = n;
+        if (++count > limit)
+        {
+          var i = bottom.prev;
+          i.prev.next = i.next;
+          i.next.prev = i.prev;
+          delete index[i.key];
+          count--;
+        }
+        callback(value);
+      });
+    }
+  }
+  
+  var result = options.async? async_generate : sync_generate;
+  result.sync = sync_generate;
+  result.async = async_generate;
+  result.purge = purge;
+  result.isCached = isCached;
+  result.getCached = getCached;
   return result;
 }
- 
 
 module.exports = generator;
