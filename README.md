@@ -6,6 +6,8 @@ Least Recently Used Cache using generator.
 ## TL;DR
 
 ```
+// sync
+
 var generate_callback = function(key) {...} ; // something expensive to generate
 var limit = 2; // say we are only caching 2 items
 var generate = require('lru-generator')(limit, generate_callback)
