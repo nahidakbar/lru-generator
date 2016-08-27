@@ -103,7 +103,7 @@ function generator(limit, global_generate, options)
     }
     else
     {
-      (local_generate || global_generate)(key, value =>
+      (local_generate || global_generate)(key, function(value)
       {
         cache(key, value);
         callback(value);
