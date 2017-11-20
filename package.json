@@ -1,14 +1,18 @@
 {
   "name": "lru-generator",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Least recently used cached generator",
-  "main": "generator.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "jbn test",
+    "init": "jbn init",
+    "docs": "jbn docs",
+    "form": "jbn form",
+    "lint": "jbn lint"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:AusFTAs/lru-generator.git"
+    "url": "git@github.com:nahidakbar/lru-generator.git"
   },
   "keywords": [
     "least",
@@ -19,5 +23,8 @@
     "factory"
   ],
   "author": "Nahid Akbar",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jbn": "latest"
+  }
 }

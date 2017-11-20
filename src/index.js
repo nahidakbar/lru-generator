@@ -1,47 +1,53 @@
 /**
  * @file LRU cached generator utility.
- * 
+ *
  * @author Nahid Akbar
  * @year 2016
  * @copyright National ICT Australia (NICTA). All rights reserved.
  */
 
 "use strict";
-
-function print(t)
-{
-  while (t !== undefined)
-  {
-    console.log('item', t.key,
-                t.prev? 'prev' : '', t.prev ? t.prev.key : '',
-                t.next? 'next' : '', t.next ? t.next.key : '');
-    t = t.next;
-  }
-}
+//
+// function print(t)
+// {
+//   while (t !== undefined)
+//   {
+//     console.log('item', t.key,
+//       t.prev ? 'prev' : '', t.prev ? t.prev.key : '',
+//       t.next ? 'next' : '', t.next ? t.next.key : '');
+//     t = t.next;
+//   }
+// }
 
 function generator(limit, global_generate, options)
 {
   options = options || {};
-  
+
   limit = Math.max(1, limit);
   var index = {};
-  var top = {next: null, key: 'top'};
-  var bottom = {prev: top, key: 'bottom'};
+  var top = {
+    next: null,
+    key: 'top'
+  };
+  var bottom = {
+    prev: top,
+    key: 'bottom'
+  };
   top.next = bottom;
   var count = 0;
-  
+
   function isCached(key)
   {
     return index[key] !== undefined;
   }
-  
+
   function getCached(key)
   {
-    var i = index[key],
-        n = i.next,
-        p = i.prev;
+    var i = index[key];
     if (i !== undefined)
     {
+      var n = i.next,
+        p = i.prev;
       if (i.key !== top.next.key)
       {
         p.next = n;
@@ -53,10 +59,15 @@ function generator(limit, global_generate, options)
       return top.next.item;
     }
   }
-  
+
   function cache(key, value)
   {
-    var n = index[key] = {next: top.next, prev: top, item: value, key: key};
+    var n = index[key] = {
+      next: top.next,
+      prev: top,
+      item: value,
+      key: key
+    };
     top.next.prev = n;
     top.next = n;
     if (++count > limit)
@@ -68,7 +79,7 @@ function generator(limit, global_generate, options)
       count--;
     }
   }
-  
+
   function purge(key)
   {
     var i = index[key];
@@ -79,8 +90,8 @@ function generator(limit, global_generate, options)
       delete index[key];
       count--;
     }
-  };
-  
+  }
+
   function sync_generate(key, local_generate)
   {
     if (index[key] !== undefined)
@@ -94,7 +105,7 @@ function generator(limit, global_generate, options)
       return value;
     }
   }
-  
+
   function async_generate(key, callback, local_generate)
   {
     if (index[key] !== undefined)
@@ -103,15 +114,15 @@ function generator(limit, global_generate, options)
     }
     else
     {
-      (local_generate || global_generate)(key, function(value)
+      (local_generate || global_generate)(key, function (value)
       {
         cache(key, value);
         callback(value);
       });
     }
   }
-  
-  var result = options.async? async_generate : sync_generate;
+
+  var result = options.async ? async_generate : sync_generate;
   result.sync = sync_generate;
   result.async = async_generate;
   result.cache = cache;
