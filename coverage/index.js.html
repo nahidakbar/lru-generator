@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>57/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.45% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>21/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>57/57</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62926x</span>
+<span class="cline-any cline-yes">62926x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62924x</span>
+<span class="cline-any cline-yes">62924x</span>
+<span class="cline-any cline-yes">62924x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37395x</span>
+<span class="cline-any cline-yes">37395x</span>
+<span class="cline-any cline-yes">37395x</span>
+<span class="cline-any cline-yes">37395x</span>
+<span class="cline-any cline-yes">37395x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62924x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18101x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18101x</span>
+<span class="cline-any cline-yes">18101x</span>
+<span class="cline-any cline-yes">18101x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17800x</span>
+<span class="cline-any cline-yes">17800x</span>
+<span class="cline-any cline-yes">17800x</span>
+<span class="cline-any cline-yes">17800x</span>
+<span class="cline-any cline-yes">17800x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81021x</span>
+<span class="cline-any cline-yes">81021x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81003x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81021x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62921x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18100x</span>
+<span class="cline-any cline-yes">18098x</span>
+<span class="cline-any cline-yes">18098x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @file LRU cached generator utility.
+ *
+ * @author Nahid Akbar
+ * @year 2016
+ * @copyright National ICT Australia (NICTA). All rights reserved.
+ */
+&nbsp;
+"use strict";
+&nbsp;
+const stringify = require('json-stable-stringify');
+&nbsp;
+//
+// function print(t)
+// {
+//   while (t !== undefined)
+//   {
+//     console.log('item', t.key,
+//       t.prev ? 'prev' : '', t.prev ? t.prev.key : '',
+//       t.next ? 'next' : '', t.next ? t.next.key : '');
+//     t = t.next;
+//   }
+// }
+//
+function generator(limit, global_generate, options)
+{
+  options = options || {};
+&nbsp;
+  limit = Math.max(1, limit);
+  var index = {};
+  var top = {
+    next: null,
+    key: 'top'
+  };
+  var bottom = {
+    prev: top,
+    key: 'bottom'
+  };
+  top.next = bottom;
+  var count = 0;
+&nbsp;
+  function isCached(key)
+  {
+    return index[key] !== undefined;
+  }
+&nbsp;
+  function getCached(key)
+  {
+    var i = index[key];
+    if (i !== undefined)
+    {
+      var n = i.next,
+        p = i.prev;
+      if (i.key !== top.next.key)
+      {
+        p.next = n;
+        n.prev = p;
+        top.next.prev = i;
+        i.next = top.next;
+        top.next = i;
+      }
+      return top.next.item;
+    }
+  }
+&nbsp;
+  function cache(key, value)
+  {
+    var n = index[key] = {
+      next: top.next,
+      prev: top,
+      item: value,
+      key: key
+    };
+    top.next.prev = n;
+    top.next = n;
+    if (++count &gt; limit)
+    {
+      var i = bottom.prev;
+      i.prev.next = i.next;
+      i.next.prev = i.prev;
+      delete index[i.key];
+      count--;
+    }
+  }
+&nbsp;
+  function purge(key)
+  {
+    var i = index[key];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (i !== undefined)
+    {
+      i.prev.next = i.next;
+      i.next.prev = i.prev
+      delete index[key];
+      count--;
+    }
+  }
+&nbsp;
+  function sync_generate(key, local_generate)
+  {
+    const originalKey = key;
+    if (typeof key !== 'string')
+    {
+      key = stringify(key);
+    }
+    if (index[key] !== undefined)
+    {
+      return getCached(key);
+    }
+    else
+    {
+      const value = (local_generate || global_generate)(originalKey, key);
+      cache(key, value);
+      return value;
+    }
+  }
+&nbsp;
+  function async_generate(key, callback, local_generate)
+  {
+    if (index[key] !== undefined)
+    {
+      callback(getCached(key));
+    }
+    else
+    {
+      (local_generate || global_generate)(key, function (value)
+      {
+        cache(key, value);
+        callback(value);
+      });
+    }
+  }
+&nbsp;
+  var result = options.async ? async_generate : sync_generate;
+  result.sync = sync_generate;
+  result.async = async_generate;
+  result.cache = cache;
+  result.purge = purge;
+  result.isCached = isCached;
+  result.getCached = getCached;
+  return result;
+}
+&nbsp;
+module.exports = generator;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 16 2018 02:09:43 GMT+0000 (UTC)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>
