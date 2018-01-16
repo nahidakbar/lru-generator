@@ -7,6 +7,9 @@
  */
 
 "use strict";
+
+const stringify = require('json-stable-stringify');
+
 //
 // function print(t)
 // {
@@ -18,7 +21,7 @@
 //     t = t.next;
 //   }
 // }
-
+//
 function generator(limit, global_generate, options)
 {
   options = options || {};
@@ -94,13 +97,18 @@ function generator(limit, global_generate, options)
 
   function sync_generate(key, local_generate)
   {
+    const originalKey = key;
+    if (typeof key !== 'string')
+    {
+      key = stringify(key);
+    }
     if (index[key] !== undefined)
     {
       return getCached(key);
     }
     else
     {
-      var value = (local_generate || global_generate)(key);
+      var value = (local_generate || global_generate)(originalKey);
       cache(key, value);
       return value;
     }

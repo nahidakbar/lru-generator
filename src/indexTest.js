@@ -26,6 +26,13 @@ describe('synchrnous', function ()
     assert.equal(instance('a'), 0)
   });
 
+  it('cache size', function ()
+  {
+    assert.equal(instance({a:0}), 0)
+    assert.equal(instance({a:1}), 1)
+    assert.equal(instance({a:0}), 0)
+  });
+
   it('cache size overflow', function ()
   {
     assert.equal(instance('a'), 0)

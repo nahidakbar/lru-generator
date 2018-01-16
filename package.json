@@ -1,6 +1,6 @@
 {
   "name": "lru-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Least recently used cached generator",
   "main": "src/index.js",
   "scripts": {
@@ -22,9 +22,12 @@
     "generator",
     "factory"
   ],
-  "author": "Nahid Akbar",
+  "author": "Nahid Akbar <mail@nahidakbar.net> (http://nahidakbar.net/)",
   "license": "MIT",
   "devDependencies": {
     "jbn": "latest"
+  },
+  "dependencies": {
+    "json-stable-stringify": "^1.0.1"
   }
 }
