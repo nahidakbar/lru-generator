@@ -108,7 +108,7 @@ function generator(limit, global_generate, options)
     }
     else
     {
-      var value = (local_generate || global_generate)(originalKey);
+      const value = (local_generate || global_generate)(originalKey, key);
       cache(key, value);
       return value;
     }
